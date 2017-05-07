@@ -119,8 +119,8 @@ cookieslist = {
     this.setCookie(id, cookie)
 
     var newtext = cookie['text']+' '+moment().fromNow();
-    $('#'+id+' .mdl-card__supporting-text').text(newtext);
-
+    $('#'+id+' .item_text').text(newtext);
+    this.$grid.masonry('layout');
   },
   setCookie: function (cname, cvalue, exdays) {
       Cookies.set(cname, cvalue);
@@ -129,22 +129,22 @@ cookieslist = {
     Cookies.remove(name);
     // document.cookie = name+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   },
-  cardtemplate: "<div  id='{{id}}' class='item mdl-card mdl-shadow--2dp'>\
-      <div class='mdl-card__supporting-text'>\
+  cardtemplate: "<div  id='{{id}}' class='item'>\
+      <div class='item_text'>\
         {{text}} {{delay}}.\
       </div> \
-      <div class='mdl-card__actions mdl-card--border'> \
-        <div class='mdl-layout-spacer'></div>\
-        <button  type='button' \
-            class='mdl-button mdl-js-button mdl-button--icon'>\
+      <div class='item_actions'> \
+        <div class='spacer'></div>\
+        <button type='button' \
+            class='button-icon'>\
           <i class='material-icons' >color_lens</i>\
         </button> \
         <button  type='button' \
-            class='resetbutton mdl-button mdl-js-button mdl-button--icon'>\
+            class='button-icon resetbutton'>\
           <i class='material-icons' >restore</i>\
         </button> \
         <button  type='button' \
-            class='deletebutton mdl-button mdl-js-button mdl-button--icon'>\
+            class='button-icon deletebutton'>\
           <i class='material-icons' >delete</i>\
         </button> \
       </div> \

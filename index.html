@@ -8,16 +8,15 @@
   <title>déjà</title>
 
   <link href="https://fonts.googleapis.com/css?family=Chango" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <link href="./js/jquery-ui.css" rel="stylesheet">
-  <link rel="stylesheet" href="./mdl/material.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 
   <script src="./js/jquery-3.2.1.min.js"></script>
   <script src="./js/jquery-ui.min.js"></script>
   <script src="./js/moment-with-locales.min.js"></script>
-  <script src="./mdl/material.min.js"></script>
   <script src="./js/mustache.min.js"></script>
   <script src="./js/js.cookie.js"></script>
   <script src="./js/masonry.pkgd.min.js"></script>
@@ -32,43 +31,54 @@
 
 <div id='itemslist' class="grid">
 
-    <div id='logo' class='item mdl-card mdl-shadow--2dp'>
-      <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">DÉJÀ</h2>
+    <div id='logo' class='item logo'>
+      <div class="item_title">
+        <h2>DÉJÀ</h2>
       </div>
     </div>
 
+    <div class='item cardadd'>
+        <div class='item_text'>
 
+            <!-- class="mdl-textfield mdl-js-textfield" -->
+            <div class="textfield">
+              <label class="textfield_input_label" for='text'><i class="material-icons" >edit</i></label>
+              <input class="textfield_input" type="text" id="text" autocomplete="off">
+            </div>
+
+            depuis
+            <select id="delay" onChange="">
+                <option value="0">maintenant</option>
+                <option value=".33">20 minutes</option>
+                <option value="1">une heure</option>
+                <option value="48">deux jours</option>
+                <option value="168">une semaine</option>
+            </SELECT>
+
+            <div id='datewrapper'>
+              <button id='calendar' type="button"
+                  class="button-icon">
+                <i class="material-icons" >date_range</i>
+              </button>
+              <div id="datepicker"></div>
+            </div>
+
+
+        </div>
+        <div class='item_actions'>
+          <button type='button'
+              class='button-icon'>
+            <i class='material-icons' >color_lens</i>
+          </button>
+          <button type='button' onclick="cookieslist.addevent()"
+              class='mdl-button mdl-js-button mdl-button--raised '>
+            ajouter
+          </button>
+      </div>
 
 </div>
 
-<form id="addform">
-      Pas
-      <!-- class="mdl-textfield mdl-js-textfield" -->
-      <div class="mdl-textfield mdl-js-textfield">
-        <input class="mdl-textfield__input" type="text" id="text" autocomplete="off">
-        <label class="mdl-textfield__label" for="text">...</label>
-      </div>
 
-      depuis
-      <select id="delay" onChange="">
-          <option value="0">maintenant</option>
-          <option value=".33">20 minutes</option>
-          <option value="1">une heure</option>
-          <option value="48">deux jours</option>
-          <option value="168">une semaine</option>
-      </SELECT>
-
-      <div id='datewrapper'>
-        <button id='calendar' type="button"
-            class="mdl-button mdl-js-button mdl-button--icon">
-          <i class="material-icons" >date_range</i>
-        </button>
-        <div id="datepicker"></div>
-      </div>
-
-      <input type="button" onclick="cookieslist.addevent()" value='add'/>
-  </form>
 
 <p id='debug'><p>
 
