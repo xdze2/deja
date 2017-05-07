@@ -93,7 +93,7 @@ body {
   color: white;
 }
 
-.item > .mdl-card__actions {
+/*.item > .mdl-card__actions {
   position: absolute;
   top:0;
   left:0;
@@ -103,4 +103,4 @@ body {
   background: rgba(200, 200, 200, .9);
   z-index:100;
   text-align: center;
-}
+}*/

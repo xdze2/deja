@@ -75,13 +75,13 @@ cookieslist = {
     $('#'+id+' .deletebutton').on("click", function(e){ _this.deleteevent(id);e.stopPropagation();});
     $('#'+id+' .resetbutton').on("click", function(e){ _this.resetevent(id);e.stopPropagation();});
 
-    $('#'+id+' .mdl-card__actions').hide();
-    $('#'+id+' .mdl-card__actions').click(function(event){
-       $('#'+id+' .mdl-card__actions').slideUp('slow');
-    });
-    $('#'+id+' .mdl-card__supporting-text').click(function(){
-       $('#'+id+' .mdl-card__actions').slideDown('slow');
-    });
+    // $('#'+id+' .mdl-card__actions').hide();
+    // $('#'+id+' .mdl-card__actions').click(function(event){
+    //    $('#'+id+' .mdl-card__actions').slideUp('slow');
+    // });
+    // $('#'+id+' .mdl-card__supporting-text').click(function(){
+    //    $('#'+id+' .mdl-card__actions').slideDown('slow');
+    // });
 
 
     this.$grid.masonry('addItems',  $('#'+id) );
@@ -133,7 +133,7 @@ cookieslist = {
       <div class='mdl-card__supporting-text'>\
         {{text}} {{delay}}.\
       </div> \
-      <div class='mdl-card__actions'> \
+      <div class='mdl-card__actions mdl-card--border'> \
         <div class='mdl-layout-spacer'></div>\
         <button  type='button' \
             class='mdl-button mdl-js-button mdl-button--icon'>\
@@ -147,7 +147,6 @@ cookieslist = {
             class='deletebutton mdl-button mdl-js-button mdl-button--icon'>\
           <i class='material-icons' >delete</i>\
         </button> \
-                <div class='mdl-layout-spacer'></div>\
       </div> \
     </div>",
     chgdate: function(date, dateobj){
