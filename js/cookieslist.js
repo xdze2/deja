@@ -25,6 +25,11 @@ cookieslist = {
     Cookies.defaults['expires'] = 30;
     Cookies.defaults['path'] = '/';
 
+    // Materialize :
+    $('select').material_select();
+    $('.tooltipped').tooltip({delay: 50});
+    $('.modal').modal();
+
     $( "#datepicker" ).datepicker({
       inline: true,
       dateFormat: 'yy-mm-dd',
@@ -38,15 +43,14 @@ cookieslist = {
       $("#datepicker").toggle();
     });
 
-    this.$grid  = $('.grid').masonry({
-      itemSelector: '.item',
-      //columnWidth: 200,
-      fitWidth: true,
-      gutter: 8 //margin
+    this.$grid  = $('.masonry-wall').masonry({
+      itemSelector: '.col'
     });
 
     // Affiche
     this.showitems();
+
+    $('.action-add').click( function(){_this.addevent();} );
 
   },
   showitems: function(){
@@ -71,17 +75,9 @@ cookieslist = {
     var data = {'id': id, 'text':values['text'], 'delay':delay}
     var rendered = Mustache.render(template, data);
 
-    $("#itemslist").append( rendered );
-    $('#'+id+' .deletebutton').on("click", function(e){ _this.deleteevent(id);e.stopPropagation();});
-    $('#'+id+' .resetbutton').on("click", function(e){ _this.resetevent(id);e.stopPropagation();});
-
-    // $('#'+id+' .mdl-card__actions').hide();
-    // $('#'+id+' .mdl-card__actions').click(function(event){
-    //    $('#'+id+' .mdl-card__actions').slideUp('slow');
-    // });
-    // $('#'+id+' .mdl-card__supporting-text').click(function(){
-    //    $('#'+id+' .mdl-card__actions').slideDown('slow');
-    // });
+    $(".masonry-wall").append( rendered );
+    $('#'+id+' .action-delete').on("click", function(e){ _this.deleteevent(id);e.stopPropagation();});
+    $('#'+id+' .action-reset').on("click", function(e){ _this.resetevent(id);e.stopPropagation();});
 
 
     this.$grid.masonry('addItems',  $('#'+id) );
@@ -90,8 +86,10 @@ cookieslist = {
     }
   },
   addevent: function (){
-    var text = document.getElementById("text").value;
-    var delay = document.getElementById("delay").value;
+    console.log('ajouter');
+    var text = $('#addtext').val();
+    var delay = $('#adddelay').val();
+
     // var startdate = document.getElementById("datepicker").value;
     // startdate = moment(startdate).valueOf();
     var startdate = moment().subtract(delay, 'hours').valueOf();
@@ -119,7 +117,7 @@ cookieslist = {
     this.setCookie(id, cookie)
 
     var newtext = cookie['text']+' '+moment().fromNow();
-    $('#'+id+' .item_text').text(newtext);
+    $('#'+id+' .item-text').text(newtext);
     this.$grid.masonry('layout');
   },
   setCookie: function (cname, cvalue, exdays) {
@@ -129,26 +127,35 @@ cookieslist = {
     Cookies.remove(name);
     // document.cookie = name+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   },
-  cardtemplate: "<div  id='{{id}}' class='item'>\
-      <div class='item_text'>\
-        {{text}} {{delay}}.\
-      </div> \
-      <div class='item_actions'> \
-        <div class='spacer'></div>\
-        <button type='button' \
-            class='button-icon'>\
-          <i class='material-icons' >color_lens</i>\
-        </button> \
-        <button  type='button' \
-            class='button-icon resetbutton'>\
-          <i class='material-icons' >restore</i>\
-        </button> \
-        <button  type='button' \
-            class='button-icon deletebutton'>\
-          <i class='material-icons' >delete</i>\
-        </button> \
-      </div> \
-    </div>",
+  cardtemplate:
+  "<div class='col s12 m4' id='{{id}}'>\
+   <div class='card blue-grey'>\
+          <div class='card-content white-text'>\
+              <p class='item-text'>{{text}} {{delay}}.</p>\
+          </div>\
+          <div class='card-action'>\
+              <a class='action-reset waves-effect waves-green btn-floating btn-flat'> <i class='material-icons'>restore</i></a>\
+              <a class='action-delete waves-effect waves-red btn-floating btn-flat'> <i class='material-icons'>delete</i></a>\
+          </div>\
+   </div>\
+   </div>",
+
+      // <div class='item_actions'> \
+      //   <div class='spacer'></div>\
+      //   <button type='button' \
+      //       class='button-icon'>\
+      //     <i class='material-icons' >color_lens</i>\
+      //   </button> \
+      //   <button  type='button' \
+      //       class='button-icon resetbutton'>\
+      //     <i class='material-icons' >restore</i>\
+      //   </button> \
+      //   <button  type='button' \
+      //       class='button-icon deletebutton'>\
+      //     <i class='material-icons' >delete</i>\
+      //   </button> \
+      // </div> \
+
     chgdate: function(date, dateobj){
       var delay = moment.duration( moment().diff( date ) ).asHours();
       var O = $('<option />', {'text':moment(date).fromNow(), 'value':delay });

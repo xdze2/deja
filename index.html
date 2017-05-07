@@ -7,19 +7,24 @@
 
   <title>déjà</title>
 
+  <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Chango" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
   <link href="./js/jquery-ui.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="deja_style.css">
 
-
+  <!-- Libs -->
   <script src="./js/jquery-3.2.1.min.js"></script>
   <script src="./js/jquery-ui.min.js"></script>
   <script src="./js/moment-with-locales.min.js"></script>
   <script src="./js/mustache.min.js"></script>
   <script src="./js/js.cookie.js"></script>
   <script src="./js/masonry.pkgd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
   <script src="./js/cookieslist.js"></script>
 </head>
@@ -27,55 +32,66 @@
 <body>
 
 
-
-
-<div id='itemslist' class="grid">
-
-    <div id='logo' class='item logo'>
-      <div class="item_title">
-        <h2>DÉJÀ</h2>
-      </div>
+<div class="row masonry-wall">
+  <!-- Logo -->
+  <div class="col s12 m4">
+    <div class="card-panel blue">
+      <h2 class="white-text logo">DÉJÀ</h2>
     </div>
+  </div>
+  <!-- info -->
+  <div class="col s12 m4 ">
+    <div class="card-panel red">
+      <span class="white-text">Depuis déjà combien de temps ?</span>
+    </div>
+  </div>
 
-    <div class='item cardadd'>
-        <div class='item_text'>
-
-            <!-- class="mdl-textfield mdl-js-textfield" -->
-            <div class="textfield">
-              <label class="textfield_input_label" for='text'><i class="material-icons" >edit</i></label>
-              <input class="textfield_input" type="text" id="text" autocomplete="off">
-            </div>
-
-            depuis
-            <select id="delay" onChange="">
-                <option value="0">maintenant</option>
-                <option value=".33">20 minutes</option>
-                <option value="1">une heure</option>
-                <option value="48">deux jours</option>
-                <option value="168">une semaine</option>
-            </SELECT>
-
-            <div id='datewrapper'>
-              <button id='calendar' type="button"
-                  class="button-icon">
-                <i class="material-icons" >date_range</i>
-              </button>
-              <div id="datepicker"></div>
-            </div>
+  <!-- nada -->
+  <div class="col s12 m4 ">
+    <div class="card-panel teal hoverable">
+      <span class="white-text">I am a very I am a very simple card. I am good at containing small bits of information.
+      I am convenient because I require littI am a very simple card. I am good at containing small bits of information.
+      I am convenient because I require little markup to us le markup to us simple card. I am good at containing small bits of information.
+      I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+      </span>
+    </div>
+  </div>
 
 
-        </div>
-        <div class='item_actions'>
-          <button type='button'
-              class='button-icon'>
-            <i class='material-icons' >color_lens</i>
-          </button>
-          <button type='button' onclick="cookieslist.addevent()"
-              class='mdl-button mdl-js-button mdl-button--raised '>
-            ajouter
-          </button>
-      </div>
+</div> <!-- end row -->
 
+
+<!-- Modal Trigger -->
+<div class="fixed-action-btn">
+  <a href="#modal1"
+  class="hoverable btn-floating btn-large waves-effect waves-light red tooltipped"
+   data-position="left" data-delay="50" data-tooltip="ajouter">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Ajouter</h4>
+    <div class="input-field">
+      <textarea id="addtext" class="materialize-textarea"></textarea>
+      <label for="textarea1">Pas fait...</label>
+    </div>
+    <div class="input-field">
+      <select id="adddelay" >
+        <option value="" disabled selected>depuis</option>
+        <option value="1">une heure</option>
+        <option value="24">un jour</option>
+        <option value="48">deux jours</option>
+        <option value="168">une semaine</option>
+      </select>
+      <label>depuis</label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="action-add modal-action modal-close waves-effect waves-green btn-flat">Ajouter</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-grey btn-flat">Annuler</a>
+  </div>
 </div>
 
 
