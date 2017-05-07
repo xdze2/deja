@@ -8,7 +8,7 @@ cookieslist = {
     relativeTime : {
         future: "dans %s",
         past:   "%s",
-        s:  "seulement quelques secondes",
+        s:  "quelques secondes",
         m:  "une minute",
         mm: "%d minutes",
         h:  "une heure",
@@ -46,6 +46,13 @@ cookieslist = {
     this.$grid  = $('.masonry-wall').masonry({
       itemSelector: '.col'
     });
+
+    // Item d'accueil
+    if( $.isEmptyObject( Cookies.get() ) ){
+      var id = moment().valueOf();
+      var data = {'id': id, 'text':'le chargement de la page', 'delay':0}
+      this.setCookie(id, data);
+    }
 
     // Affiche
     this.showitems();
