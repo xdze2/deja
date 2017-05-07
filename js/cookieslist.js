@@ -7,7 +7,7 @@ cookieslist = {
     moment.updateLocale('fr', {
     relativeTime : {
         future: "dans %s",
-        past:   "depuis %s",
+        past:   "%s",
         s:  "seulement quelques secondes",
         m:  "une minute",
         mm: "%d minutes",
@@ -50,8 +50,9 @@ cookieslist = {
     // Affiche
     this.showitems();
 
+    // Form valid:
     $('.action-add').click( function(){_this.addevent();} );
-
+    $('.action-cancel').click( function(){_this.resetform();} );
   },
   showitems: function(){
       // Affiche les items
@@ -101,7 +102,13 @@ cookieslist = {
 
     this.renderitem( id_timestamp, values, true )
 
-    $('#addform').trigger("reset");
+    $('#modal1').modal('close');
+    this.resetform();
+
+  },
+  resetform: function(){
+    $('#addtext').val('');
+    $('#adddelay').val();
   },
   deleteevent: function(id){
     console.log('del:'+id);
@@ -131,7 +138,9 @@ cookieslist = {
   "<div class='col s12 m4' id='{{id}}'>\
    <div class='card blue-grey'>\
           <div class='card-content white-text'>\
-              <p class='item-text'>{{text}} {{delay}}.</p>\
+              <span class='delay'>{{delay}}</span>\
+              <span class='depuis'>depuis</span>\
+              <p class='item-text'>{{text}}</p>\
           </div>\
           <div class='card-action'>\
               <a class='action-reset waves-effect waves-green btn-floating btn-flat'> <i class='material-icons'>restore</i></a>\

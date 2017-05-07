@@ -7,10 +7,12 @@
 
   <title>déjà</title>
 
-  <!-- Styles -->
+  <!-- fonts -->
   <link href="https://fonts.googleapis.com/css?family=Chango" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Exo+2:500,600" rel="stylesheet">
 
+  <!-- Styles -->
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 
@@ -46,17 +48,6 @@
     </div>
   </div>
 
-  <!-- nada -->
-  <div class="col s12 m4 ">
-    <div class="card-panel teal hoverable">
-      <span class="white-text">I am a very I am a very simple card. I am good at containing small bits of information.
-      I am convenient because I require littI am a very simple card. I am good at containing small bits of information.
-      I am convenient because I require little markup to us le markup to us simple card. I am good at containing small bits of information.
-      I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-      </span>
-    </div>
-  </div>
-
 
 </div> <!-- end row -->
 
@@ -72,12 +63,9 @@
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
   <div class="modal-content">
-    <h4>Ajouter</h4>
-    <div class="input-field">
-      <textarea id="addtext" class="materialize-textarea"></textarea>
-      <label for="textarea1">Pas fait...</label>
-    </div>
-    <div class="input-field">
+    <!-- <h4>Ajouter</h4> -->
+    Déjà
+    <div class="input-field inline">
       <select id="adddelay" >
         <option value="" disabled selected>depuis</option>
         <option value="1">une heure</option>
@@ -85,12 +73,19 @@
         <option value="48">deux jours</option>
         <option value="168">une semaine</option>
       </select>
-      <label>depuis</label>
+
     </div>
+    depuis
+    <div class="input-field">
+      <input id="addtext" type="text" class="validate">
+      <label for="addtext">quoi ?</label>
+    </div>
+
   </div>
   <div class="modal-footer">
-    <a href="#!" class="action-add modal-action modal-close waves-effect waves-green btn-flat">Ajouter</a>
-    <a href="#!" class="modal-action modal-close waves-effect waves-grey btn-flat">Annuler</a>
+    <!-- <a href="#!" class="action-add modal-action modal-close waves-effect waves-green btn-flat">Ajouter</a> -->
+    <a class="action-add waves-effect waves-light btn-flat light-green">Ajouter</a>
+    <a class="action-cancel modal-action modal-close waves-effect waves-grey btn-flat">Annuler</a>
   </div>
 </div>
 

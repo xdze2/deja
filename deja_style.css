@@ -6,3 +6,28 @@
   margin: 0;
   margin-top: 0.1em;
 }
+
+.modal {
+  overflow: visible;
+}
+
+.delay {
+  font-family:  'Chango', cursive;
+  font-size: 2em;
+  font-weight: normal;
+}
+.depuis {
+  font-family:  'Exo', cursive;
+  font-weight: 500;
+  font-size: 1em;
+  opacity: .6;
+  padding-left: 1em;
+  /*font-weight: bold;*/
+}
+.item-text {
+  font-family:  'Exo', cursive;
+  font-weight: 500;
+  font-size: 1.2em;
+}
+/*opacity: .5;
+font-weight: normal;*/
