@@ -30,18 +30,25 @@ cookieslist = {
     $('.tooltipped').tooltip({delay: 50});
     $('.modal').modal();
 
-    $( "#datepicker" ).datepicker({
-      inline: true,
-      dateFormat: 'yy-mm-dd',
-      onSelect: function(value, date) {
-            _this.chgdate(value, date);
-            $("#datepicker").hide();
-          }
-    });
-    $("#datepicker").hide();
-    $("#calendar").click(function(){
-      $("#datepicker").toggle();
-    });
+    // $('.datepicker').pickadate({
+    //     selectMonths: true, // Creates a dropdown to control month
+    //   //  selectYears: 15 // Creates a dropdown of 15 years to control year
+    //   });
+    // $('.picker').appendTo('body');
+
+    // jqueryUI:
+    // $( "#datepicker" ).datepicker({
+    //   inline: true,
+    //   dateFormat: 'yy-mm-dd',
+    //   onSelect: function(value, date) {
+    //         _this.chgdate(value, date);
+    //         $("#datepicker").hide();
+    //       }
+    // });
+    // $("#datepicker").hide();
+    // $("#calendar").click(function(){
+    //   $("#datepicker").toggle();
+    // });
 
     this.$grid  = $('.masonry-wall').masonry({
       itemSelector: '.col'
@@ -50,7 +57,7 @@ cookieslist = {
     // Item d'accueil
     if( $.isEmptyObject( Cookies.get() ) ){
       var id = moment().valueOf();
-      var data = {'id': id, 'text':'le chargement de la page', 'delay':0}
+      var data = {'id': id, 'text':'le chargement de la page', 'delay':0, 'color':'purple lighten-1'}
       this.setCookie(id, data);
     }
 
@@ -80,13 +87,13 @@ cookieslist = {
     var delay = moment(values['date']).fromNow() ;
 
     var template  = _this.cardtemplate;
-    var data = {'id': id, 'text':values['text'], 'delay':delay}
+    var data = {'id': id, 'text':values['text'], 'delay':delay, 'color':values['color']}
     var rendered = Mustache.render(template, data);
 
     $(".masonry-wall").append( rendered );
     $('#'+id+' .action-delete').on("click", function(e){ _this.deleteevent(id);e.stopPropagation();});
     $('#'+id+' .action-reset').on("click", function(e){ _this.resetevent(id);e.stopPropagation();});
-
+    // $('#'+id+' .card').addClass()
 
     this.$grid.masonry('addItems',  $('#'+id) );
     if(dolayout){
@@ -97,6 +104,8 @@ cookieslist = {
     console.log('ajouter');
     var text = $('#addtext').val();
     var delay = $('#adddelay').val();
+    var color = $("#colorpicker input[type='radio']:checked").val();
+    console.log(color);
 
     // var startdate = document.getElementById("datepicker").value;
     // startdate = moment(startdate).valueOf();
@@ -104,7 +113,7 @@ cookieslist = {
 
     var id_timestamp = moment().valueOf();
 
-    var values = {'text':text, 'date':startdate, 'color':'#E1CE4C'}
+    var values = {'text':text, 'date':startdate, 'color':color}
     this.setCookie(id_timestamp, values)
 
     this.renderitem( id_timestamp, values, true )
@@ -143,7 +152,7 @@ cookieslist = {
   },
   cardtemplate:
   "<div class='col s12 m4' id='{{id}}'>\
-   <div class='card blue-grey'>\
+   <div class='card {{color}}'>\
           <div class='card-content white-text'>\
               <span class='delay'>{{delay}}</span>\
               <span class='depuis'>depuis</span>\

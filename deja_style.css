@@ -29,5 +29,29 @@
   font-weight: 500;
   font-size: 1.2em;
 }
-/*opacity: .5;
-font-weight: normal;*/
+
+/*.radio-indigo[type="radio"] + label:before{
+    border: 2px solid indigo;
+    background: transparent;
+}
+.radio-indigo[type="radio"]:checked + label:before{
+    border: 2px solid transparent;
+    border-bottom: 2px solid indigo;
+    border-right: 2px solid indigo;
+    background: transparent;
+}*/
+
+/*input[type=radio] {
+  display: none !important;
+}
+
+.colorpicker [type="radio"] + label::before,
+.colorpicker [type="radio"] + label::after {
+    content: '';
+  }
+.colorpicker input[type=radio] + label {
+
+}
+.colorpicker input[type=radio]:checked + label {
+  border: solid 4px black;
+}*/

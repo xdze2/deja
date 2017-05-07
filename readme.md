@@ -30,6 +30,8 @@ https://github.com/js-cookie/js-cookie/tree/v1.5.1
 https://getmdl.io/started/index.html#download
 - Date Picker
 
+- Color picker ?
+https://github.com/felipegruoso/materialize-colorpicker
 
 ## Actions
 ### Possibles
