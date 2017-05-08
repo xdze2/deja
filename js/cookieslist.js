@@ -67,6 +67,9 @@ cookieslist = {
     // actions du Formualire Add :
     $('.action-add').click( function(){_this.addevent();} );
     $('.action-cancel').click( function(){_this.resetform();} );
+
+    // Mise à jour automatique
+    setInterval(function(){_this.updateauto();}, 100*1000);
   },
   showitems: function(){
       // Affiche les items
@@ -138,6 +141,16 @@ cookieslist = {
     this.$grid.masonry('layout');
 
     this.setCookie(id, cookie)
+  },
+  updateauto: function(){
+    console.log('update');
+    var cookies = Cookies.get();
+
+    $.each(cookies, function(id, values) {
+        var delay = moment(values['date']).fromNow();
+        $('#'+id+' .delay').text(delay);
+    });
+    this.$grid.masonry('layout');
   },
   setCookie: function (cname, cvalue, exdays) {
       Cookies.set(cname, cvalue);
