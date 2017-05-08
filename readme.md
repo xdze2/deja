@@ -1,33 +1,29 @@
-# DÉJÀ! une ToDo liste inversée
+# DÉJÀ
 
-## Qu'est ce que c'est ?
+## une ToDo liste inversée
 
-- Deux semaine depuis que j'ai payé mes impôts.
-- Un jour est passé depuis mes dernières courses.
-- Un an et deux mois depuis mon dernière rendez-vous chez le médecin.
+- Deux semaine _depuis_ que j'ai payé mes impôts.
+- Un jour _depuis_ mes dernières courses.
+- Un an et deux mois _depuis_ mon dernier rendez-vous chez le médecin.
 
-### Formulation
-- Je suis allé chez le médecin **il y a** trois ans
-- Je ne suis pas allé chez le médecin **depuis**
-- Il s'est passé /dd/ depuis ma dernière visite.
-- 3 ans depuis ma dernière visite
-- 4 mois sans travaillerg
 
-- quoi ça fait déjà trois ans
+pour mesurer le temps qui passe.
 
-voir le temps passer
+
+
 
 ## Comment ça marche ?
 
-Les informations sont stockées localement, dans des cookies. Tout ce passe coté client, pas de serveur, pas de transfert d'information.
+Les informations sont stockées localement, dans des cookies. Tout se passe coté client, pas de serveur, pas de transfert d'information.
 
 ### Librairies:
-- Cookie
+- Cookie:
 https://github.com/js-cookie/js-cookie/tree/v1.5.1
 
 - JQuerry
-- Material.io ? ? Card https://material.io/guidelines/components/cards.html#cards-behavior
-https://getmdl.io/started/index.html#download
+- Material.io framework:
+http://materializecss.com/
+
 - Date Picker
 
 - Color picker ?
@@ -35,10 +31,10 @@ https://github.com/felipegruoso/materialize-colorpicker
 
 ## Actions
 ### Possibles
-- créer une note
-- afficher les notes
-- supprimer une note
-- reset de la date
+- Créer une note
+- Afficher les notes
+- Supprimer une note
+- Mise à zéro de la date
 
 ### à faire
 - modifier le texte d'une note, la Date
@@ -49,11 +45,11 @@ https://github.com/felipegruoso/materialize-colorpicker
   - id/timestamp (nom du cookie)
   - date de départ
   - texte
-  - (color)
+  - couleur
 
 
 ## Démarrer le serveur
- python -m SimpleHTTPServer
+python -m SimpleHTTPServer
 
 ## Style
 color picker Material.io

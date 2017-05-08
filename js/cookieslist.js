@@ -57,14 +57,14 @@ cookieslist = {
     // Item d'accueil
     if( $.isEmptyObject( Cookies.get() ) ){
       var id = moment().valueOf();
-      var data = {'id': id, 'text':'le chargement de la page', 'delay':0, 'color':'purple lighten-1'}
+      var data = {'id': id, 'text':'le chargement de la page', 'date':id, 'color':'purple lighten-1'}
       this.setCookie(id, data);
     }
 
     // Affiche
     this.showitems();
 
-    // Form valid:
+    // actions du Formualire Add :
     $('.action-add').click( function(){_this.addevent();} );
     $('.action-cancel').click( function(){_this.resetform();} );
   },
@@ -72,9 +72,9 @@ cookieslist = {
       // Affiche les items
       var _this = this;
 
-      // $("#itemslist").empty();
-      $('#debug').text(document.cookie);
       var cookies = Cookies.get();
+      console.log( cookies );
+
       $.each(cookies, function(id, values) {
           _this.renderitem( id, values )
       });
@@ -87,13 +87,12 @@ cookieslist = {
     var delay = moment(values['date']).fromNow() ;
 
     var template  = _this.cardtemplate;
-    var data = {'id': id, 'text':values['text'], 'delay':delay, 'color':values['color']}
-    var rendered = Mustache.render(template, data);
+    var values = {'id': id, 'text':values['text'], 'delay':delay, 'color':values['color']}
+    var rendered = Mustache.render(template, values);
 
     $(".masonry-wall").append( rendered );
     $('#'+id+' .action-delete').on("click", function(e){ _this.deleteevent(id);e.stopPropagation();});
     $('#'+id+' .action-reset').on("click", function(e){ _this.resetevent(id);e.stopPropagation();});
-    // $('#'+id+' .card').addClass()
 
     this.$grid.masonry('addItems',  $('#'+id) );
     if(dolayout){
@@ -101,22 +100,18 @@ cookieslist = {
     }
   },
   addevent: function (){
-    console.log('ajouter');
     var text = $('#addtext').val();
-    var delay = $('#adddelay').val();
     var color = $("#colorpicker input[type='radio']:checked").val();
-    console.log(color);
 
-    // var startdate = document.getElementById("datepicker").value;
-    // startdate = moment(startdate).valueOf();
+    var delay = $('#adddelay').val();
     var startdate = moment().subtract(delay, 'hours').valueOf();
 
-    var id_timestamp = moment().valueOf();
+    var id_timestamp = String( moment().valueOf() );
 
-    var values = {'text':text, 'date':startdate, 'color':color}
-    this.setCookie(id_timestamp, values)
+    var data = {'text':text, 'date':startdate, 'color':color}
+    this.setCookie(id_timestamp, data)
 
-    this.renderitem( id_timestamp, values, true )
+    this.renderitem( id_timestamp, data, true )
 
     $('#modal1').modal('close');
     this.resetform();
@@ -133,25 +128,25 @@ cookieslist = {
     this.$grid.masonry('layout');
   },
   resetevent: function(id){
-    var cookie = Cookies.get(id);
+    // Mise à zéro de la date
+    var cookie = Cookies.get(String(id));
 
     cookie['date'] = moment().valueOf();
+    var delay = moment(cookie['date']).fromNow() ;
+
+    $('#'+id+' .delay').text(delay);
+    this.$grid.masonry('layout');
 
     this.setCookie(id, cookie)
-
-    var newtext = cookie['text']+' '+moment().fromNow();
-    $('#'+id+' .item-text').text(newtext);
-    this.$grid.masonry('layout');
   },
   setCookie: function (cname, cvalue, exdays) {
       Cookies.set(cname, cvalue);
   },
   deleteCookie: function(name){
     Cookies.remove(name);
-    // document.cookie = name+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   },
   cardtemplate:
-  "<div class='col s12 m4' id='{{id}}'>\
+  "<div class='col s12 m6 l4' id='{{id}}'>\
    <div class='card {{color}}'>\
           <div class='card-content white-text'>\
               <span class='delay'>{{delay}}</span>\
@@ -165,31 +160,15 @@ cookieslist = {
    </div>\
    </div>",
 
-      // <div class='item_actions'> \
-      //   <div class='spacer'></div>\
-      //   <button type='button' \
-      //       class='button-icon'>\
-      //     <i class='material-icons' >color_lens</i>\
-      //   </button> \
-      //   <button  type='button' \
-      //       class='button-icon resetbutton'>\
-      //     <i class='material-icons' >restore</i>\
-      //   </button> \
-      //   <button  type='button' \
-      //       class='button-icon deletebutton'>\
-      //     <i class='material-icons' >delete</i>\
-      //   </button> \
-      // </div> \
-
-    chgdate: function(date, dateobj){
-      var delay = moment.duration( moment().diff( date ) ).asHours();
-      var O = $('<option />', {'text':moment(date).fromNow(), 'value':delay });
-      $('#delay').append( O );
-      O.prop('selected', true) ;
-    },
-    clicmenu: function(){
+  chgdate: function(date, dateobj){
+    var delay = moment.duration( moment().diff( date ) ).asHours();
+    var O = $('<option />', {'text':moment(date).fromNow(), 'value':delay });
+    $('#delay').append( O );
+    O.prop('selected', true) ;
+  },
+  clicmenu: function(){
 
 
-    }
+  }
 } // end dict
 $( document ).ready( function(){cookieslist.init()} );
