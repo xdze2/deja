@@ -20,7 +20,7 @@ Les informations sont stock√©es localement, dans des cookies. Tout se passe cot√
 - Cookie:
 https://github.com/js-cookie/js-cookie/tree/v1.5.1
 
-- JQuerry
+- JQuery
 - Material.io framework:
 http://materializecss.com/
 
