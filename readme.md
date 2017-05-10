@@ -25,6 +25,7 @@ https://github.com/js-cookie/js-cookie/tree/v1.5.1
 http://materializecss.com/
 
 - Date Picker
+http://amsul.ca/pickadate.js/api/
 
 - Color picker ?
 https://github.com/felipegruoso/materialize-colorpicker

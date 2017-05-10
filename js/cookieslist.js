@@ -1,5 +1,18 @@
 cookieslist = {
   $grid: false,
+  p: function(){console.log('open')},
+  pickdateoption: {
+      today: false,
+      clear: false,
+      close: 'Ok',
+      closeOnSelect: true,
+      format: 'yyyy-mm-dd',
+      onClose: function(){ cookieslist.chgdate() }, //???,
+      onOpen: function(){ return this.p },
+      firstDay: 'monday',
+      containerHidden:true
+  },
+
   init: function() {
     var _this = this;
     // config
@@ -30,25 +43,9 @@ cookieslist = {
     $('.tooltipped').tooltip({delay: 50});
     $('.modal').modal();
 
-    // $('.datepicker').pickadate({
-    //     selectMonths: true, // Creates a dropdown to control month
-    //   //  selectYears: 15 // Creates a dropdown of 15 years to control year
-    //   });
-    // $('.picker').appendTo('body');
+    $('.datepicker').pickadate(_this.pickdateoption);
+    //$('.picker').appendTo('body');
 
-    // jqueryUI:
-    // $( "#datepicker" ).datepicker({
-    //   inline: true,
-    //   dateFormat: 'yy-mm-dd',
-    //   onSelect: function(value, date) {
-    //         _this.chgdate(value, date);
-    //         $("#datepicker").hide();
-    //       }
-    // });
-    // $("#datepicker").hide();
-    // $("#calendar").click(function(){
-    //   $("#datepicker").toggle();
-    // });
 
     this.$grid  = $('.masonry-wall').masonry({
       itemSelector: '.col'
@@ -173,15 +170,25 @@ cookieslist = {
    </div>\
    </div>",
 
-  chgdate: function(date, dateobj){
+  chgdate: function(){ //date, dateobj
+    console.log('chg date')
+    //console.log( $('.datepicker').get() )
+
+    var date = $('.datepicker').val();
+
     var delay = moment.duration( moment().diff( date ) ).asHours();
-    var O = $('<option />', {'text':moment(date).fromNow(), 'value':delay });
-    $('#delay').append( O );
-    O.prop('selected', true) ;
+    console.log( delay )
+    // ajoute ce delais comme option
+    // moment(date).fromNow()
+    var Opt = $('<option />', {'text':moment(date).fromNow(), 'value':delay });
+    $('#adddelay').append( Opt );
+    Opt.prop('selected', true) ;
+    $('#adddelay').material_select(); //updating
   },
   clicmenu: function(){
 
 
   }
 } // end dict
+
 $( document ).ready( function(){cookieslist.init()} );
