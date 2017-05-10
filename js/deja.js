@@ -1,4 +1,4 @@
-cookieslist = {
+deja_obj = {
   $grid: false,
   p: function(){console.log('open')},
   pickdateoption: {
@@ -191,4 +191,4 @@ cookieslist = {
   }
 } // end dict
 
-$( document ).ready( function(){cookieslist.init()} );
+$( document ).ready( function(){ deja_obj.init()} );
