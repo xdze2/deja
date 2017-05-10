@@ -1,14 +1,14 @@
 deja_obj = {
   $grid: false,
-  p: function(){console.log('open')},
+  $picker: undefined,
   pickdateoption: {
       today: false,
       clear: false,
       close: 'Ok',
       closeOnSelect: true,
       format: 'yyyy-mm-dd',
-      onClose: function(){ cookieslist.chgdate() }, //???,
-      onOpen: function(){ return this.p },
+      onClose: function(){ deja_obj.chgdate() }, //???
+      onSet: function(ele){if(ele.select){this.close();}},
       firstDay: 'monday',
       containerHidden:true
   },
@@ -35,7 +35,7 @@ deja_obj = {
     }
     });
     Cookies.json = true;
-    Cookies.defaults['expires'] = 30;
+    Cookies.defaults['expires'] = 600;
     Cookies.defaults['path'] = '/';
 
     // Materialize :
@@ -43,8 +43,8 @@ deja_obj = {
     $('.tooltipped').tooltip({delay: 50});
     $('.modal').modal();
 
-    $('.datepicker').pickadate(_this.pickdateoption);
-    //$('.picker').appendTo('body');
+    this.$picker = $('.datepicker').pickadate(_this.pickdateoption);
+    $('.picker').appendTo('body');
 
 
     this.$grid  = $('.masonry-wall').masonry({
@@ -64,7 +64,12 @@ deja_obj = {
     // actions du Formualire Add :
     $('.action-add').click( function(){_this.addevent();} );
     $('.action-cancel').click( function(){_this.resetform();} );
-
+    $('.action-calendar').click( function(e){
+       console.log('open');
+       e.stopPropagation();
+       e.preventDefault();
+       _this.$picker.pickadate('open');
+      } );
     // Mise à jour automatique
     setInterval(function(){_this.updateauto();}, 100*1000);
   },
@@ -120,6 +125,7 @@ deja_obj = {
   resetform: function(){
     $('#addtext').val('');
     $('#adddelay').val();
+   //this.$picker.set('clear');
   },
   deleteevent: function(id){
     console.log('del:'+id);
@@ -172,23 +178,25 @@ deja_obj = {
 
   chgdate: function(){ //date, dateobj
     console.log('chg date')
-    //console.log( $('.datepicker').get() )
+
+    console.log( this.$picker.get() )
 
     var date = $('.datepicker').val();
 
     var delay = moment.duration( moment().diff( date ) ).asHours();
-    console.log( delay )
-    // ajoute ce delais comme option
-    // moment(date).fromNow()
-    var Opt = $('<option />', {'text':moment(date).fromNow(), 'value':delay });
-    $('#adddelay').append( Opt );
+
+    // ajoute ce delais comme elt. 'option'
+    var Opt = $('<option />', {'text':moment(date).fromNow(), 'value':delay, 'class':'frompicker' });
+
+    if ($("#adddelay .frompicker").length === 1){ //replace
+      $('#adddelay .frompicker').replaceWith( Opt );
+    }else{ //add
+      $('#adddelay').append( Opt );
+    }
+
     Opt.prop('selected', true) ;
     $('#adddelay').material_select(); //updating
   },
-  clicmenu: function(){
-
-
-  }
 } // end dict
 
 $( document ).ready( function(){ deja_obj.init()} );

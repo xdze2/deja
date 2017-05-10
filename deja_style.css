@@ -33,10 +33,14 @@ body {
   font-size: 1.2em;
 }
 
+.datepicker {
+  display: none;
+}
 .picker__date-display{
   display: none;
-
 }
+
+
 /*.radio-indigo[type="radio"] + label:before{
     border: 2px solid indigo;
     background: transparent;
