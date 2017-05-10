@@ -9,8 +9,14 @@ deja_obj = {
       format: 'yyyy-mm-dd',
       onClose: function(){ deja_obj.chgdate() }, //???
       onSet: function(ele){if(ele.select){this.close();}},
-      firstDay: 'monday',
-      containerHidden:true
+      firstDay: 'Monday',
+      container: 'body',
+      selectYears: false,
+      monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+      monthsShort: ['Jan', 'Févr', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sept', 'Oct', 'Nov', 'Déc'],
+      weekdaysFull: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+      weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+      weekdaysLetter: [ 'D', 'L', 'M', 'Me', 'J', 'V', 'S' ], //materializecss...
   },
 
   init: function() {
@@ -44,7 +50,7 @@ deja_obj = {
     $('.modal').modal();
 
     this.$picker = $('.datepicker').pickadate(_this.pickdateoption);
-    $('.picker').appendTo('body');
+    // $('.picker').appendTo('body');
 
 
     this.$grid  = $('.masonry-wall').masonry({
